@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.nav-item .nav-link, .navbar-brand{
+    color:white
+}
+
+.custom-bg,.btn-primary{
+   background-color: #12a4b8;
+   border-color: #12a4b8;
+}
+
+body{
+    background-color: rgb(247, 246, 246)
+}

@@ -1,0 +1,15 @@
+.table-dark{
+    --bs-table-bg: #706f6f;
+}
+
+.table thead th, .table tbody td{
+    text-align: center;
+}
+
+.icon-green{
+    color:green
+}
+
+.icon-red{
+    color:red
+}

@@ -22,6 +22,9 @@ export class UserListComponent implements OnInit {
   uploadedFile:any
   userId: string = '';
   previewImageUrl: any;
+  emailText: any ='';
+  isEmailExists: boolean = false;
+  selectedUser: any = {};
 
   constructor(private userService: UserService, private toastrService : ToastrService, 
     private fb : FormBuilder, private _toastrService:ToastrService) { 
@@ -48,6 +51,10 @@ export class UserListComponent implements OnInit {
          this.userList = users.data
       }
     })
+  }
+
+  openUserModal(item:any){
+    this.selectedUser = item;
   }
 
   openUpdateModal(item:any){
@@ -123,5 +130,21 @@ export class UserListComponent implements OnInit {
         }
      })
   }
+
+  checkEmailExist(){
+    var email = this.editUserForm.controls['email'].value;
+    var emailObj :any = {};
+    emailObj.email = email;
+    this.userService.checkEmailExists(emailObj).subscribe((user:any) =>{
+      if(user.status == 200){
+        this.isEmailExists = true;
+        this.emailText = user.message;
+      }else{
+        this.isEmailExists = false;
+        this.emailText = null;
+      }
+    })
+  }
+
 
 }

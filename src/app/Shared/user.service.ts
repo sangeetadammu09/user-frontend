@@ -25,4 +25,8 @@ export class UserService {
   deleteUser(id:any): Observable<any[]> {
     return this.http.delete<any[]>(`${environment.apiUrl}/delete-user/${id}`);
   }
+
+  checkEmailExists(email:any):Observable<any[]> {
+    return this.http.post<any[]>(`${environment.apiUrl}/checkemailexists`,email);
+  }
 }

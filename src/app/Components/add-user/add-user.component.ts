@@ -15,6 +15,8 @@ export class AddUserComponent implements OnInit {
   submitted:boolean = false;
   fileName:string = ''
   uploadedFile:any
+  emailText: any ='';
+  isEmailExists: boolean = false;
 
   constructor(private fb :FormBuilder,private _toastrService: ToastrService, private userService: UserService, private router: Router) { 
     this.addUserForm =  this.fb.group({
@@ -30,6 +32,7 @@ export class AddUserComponent implements OnInit {
   get f(){ return this.addUserForm.controls}
 
   ngOnInit(): void {
+    
   }
 
   uploadAvatar(file:any){
@@ -66,6 +69,21 @@ export class AddUserComponent implements OnInit {
       return;
     }   
 
+  }
+
+  checkEmailExist(){
+    var email = this.addUserForm.controls['email'].value;
+    var emailObj :any = {};
+    emailObj.email = email;
+    this.userService.checkEmailExists(emailObj).subscribe((user:any) =>{
+      if(user.status == 200){
+        this.isEmailExists = true;
+        this.emailText = user.message;
+      }else{
+        this.isEmailExists = false;
+        this.emailText = null;
+      }
+    })
   }
 
 }

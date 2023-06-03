@@ -51,12 +51,14 @@ export class UserListComponent implements OnInit {
   }
 
   openUpdateModal(item:any){
+    console.log(item)
     this.previewImageUrl = item.imageUrl
     var fileName = item.avatar.split('/')[2];
     this.fileName = fileName;
     this.showUpdateModal = true;
     this.showDeleteModal = false;
     this.userId = item._id;
+    
     this.editUserForm.patchValue({
       firstName: item.firstName,
       lastName: item.lastName,
@@ -65,7 +67,7 @@ export class UserListComponent implements OnInit {
       isActive: JSON.stringify(item.isActive),
 
     })
-    this.uploadedFile='';
+   
   }
 
   uploadAvatar(file:any){
@@ -92,8 +94,9 @@ export class UserListComponent implements OnInit {
     this.userService.updateUser(this.userId,userData).subscribe((user:any) =>{
       console.log(user);
       if(user.status == 200){
+        this.uploadedFile='';
         this._toastrService.success('User updated successfully')
-        this.getUserList()
+        this.getUserList();
         this.closeUpdateModal.nativeElement.click();
       }
 

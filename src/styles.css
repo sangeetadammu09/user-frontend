@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{
+    background-color: rgb(247, 246, 246)
+}
+
+.nav-item .nav-link, .navbar-brand{
+    color:white
+}
+
+.custom-bg,.btn-primary{
+   background-color: #12a4b8;
+   border-color: #12a4b8;
+}
+
+
+
+.text-error{
+    color:red;
+}
+
+.block-center{
+    display: block;
+    margin: auto;
+}

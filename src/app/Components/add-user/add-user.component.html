@@ -1,0 +1,115 @@
+<div class="wrapper">
+    <div class="container mt-5">
+        <div class="col-lg-6 block-center">
+        <div class="card">
+            <div class="card-header custom-bg"> <h3 class="card-title text-center text-white">User Form</h3> </div>
+            <div class="card-body">
+                <form [formGroup]="addUserForm" (ngSubmit)="submitUser()">
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label class="form-control-label">First Name</label>
+                            <input type="text" class="form-control" formControlName="firstName" name="firstName"  
+                            [ngClass]="{'is-invalid':(submitted && f['firstName'].errors) ||(f['firstName'].errors && f['firstName'].touched) }">
+                                <div *ngIf="(submitted && f['firstName'].errors) ||(f['firstName'].errors && f['firstName'].touched)" class="invalid-feedback">
+                                    <div *ngIf="f['firstName'].errors['required']">
+                                        Name is required
+                                    </div>
+                                    <div *ngIf="f['firstName'].errors['pattern']">
+                                        Only Characters are allowed
+                                      </div>
+                             </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="form-control-label">Last Name</label>
+                            <input type="text" class="form-control" formControlName="lastName" name="lastName"  
+                            [ngClass]="{'is-invalid':(submitted && f['lastName'].errors) ||(f['lastName'].errors && f['lastName'].touched) }">
+                                <div *ngIf="(submitted && f['lastName'].errors) ||(f['lastName'].errors && f['lastName'].touched)" class="invalid-feedback">
+                                    <div *ngIf="f['lastName'].errors['required']">
+                                        Name is required
+                                    </div>
+                                    <div *ngIf="f['lastName'].errors['pattern']">
+                                        Only Characters are allowed
+                                      </div>
+                             </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label class="form-control-label">Email</label>
+                            <input type="text" class="form-control" formControlName="email" name="email"   (change)="checkEmailExist()"
+                            [ngClass]="{'is-invalid':(submitted && f['email'].errors) ||(f['email'].errors && f['email'].touched) }">
+                                <div *ngIf="(submitted && f['email'].errors) ||(f['email'].errors && f['email'].touched)" class="invalid-feedback">
+                                    <div *ngIf="f['email'].errors['required']">
+                                        Email is required
+                                    </div>
+                                    <div *ngIf="f['email'].errors['pattern']">
+                                        Email address is invalid
+                                      </div>
+                                </div>
+                                <div *ngIf="isEmailExists" class="text-error">{{emailText}}</div>
+                                
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="form-control-label">Contact</label>
+                            <input type="text" class="form-control" formControlName="phoneNumber" name="phoneNumber"
+                            [ngClass]="{'is-invalid':(submitted && f['phoneNumber'].errors) ||(f['phoneNumber'].errors && f['phoneNumber'].touched) }">
+                                <div *ngIf="(submitted && f['phoneNumber'].errors) ||(f['phoneNumber'].errors && f['phoneNumber'].touched)" class="invalid-feedback">
+                                    <div *ngIf="f['phoneNumber'].errors['required']">
+                                        Contact is required
+                                    </div>
+                                    <div *ngIf="f['phoneNumber'].errors['pattern']">
+                                        Please, Enter 10 digit Contact Number
+                                    </div>
+                             </div>
+                            
+                             
+                        </div>
+                        
+                    </div>
+        
+                    
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label class="form-control-label">Status</label><br/>
+                            <div class="form-check form-check-inline">
+                            <label class="form-check-label p-0" for="active">
+                            <input class="form-check-input" type="radio" formControlName="isActive" name="isActive" id="status" value="true"
+                            [ngClass]="{'is-invalid':(submitted && f['isActive'].errors) ||(f['isActive'].errors && f['isActive'].touched) }">Active
+                            </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                            <label class="form-check-label p-0" for="inactive">
+                            <input class="form-check-input" type="radio" formControlName="isActive" name="isActive" id="status" value="false"
+                            [ngClass]="{'is-invalid':(submitted && f['isActive'].errors) ||(f['isActive'].errors && f['isActive'].touched) }">Inactive
+                            </label>
+                            </div>
+                            <div *ngIf="(submitted && f['isActive'].errors) ||(f['isActive'].errors && f['isActive'].touched)" class="invalid-feedback">
+                                <div *ngIf="f['isActive'].errors['required']">Status is required</div> 
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-8">
+                            
+                            <label class="form-label">Image</label>
+                            <div class="custom-file">
+                                <input type="file" class="form-control" id="customFile" name="image" 
+                                (change)="uploadAvatar($event)">
+                                <label class="custom-label" for="file">{{fileName}}</label>    
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+        
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </div>
+                </form>
+            </div>
+           
+        </div>
+        
+    </div>
+    </div>
+</div>

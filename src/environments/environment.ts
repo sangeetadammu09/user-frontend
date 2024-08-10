@@ -5,6 +5,6 @@
 export const environment = {
   production: false,
   //apiUrl: 'http://localhost:3000/api',
-  apiUrl : 'http://15.207.87.49:3000/api'
+  apiUrl : 'http://15.207.87.49:3000/api' 
 };
 

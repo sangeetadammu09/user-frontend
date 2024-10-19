@@ -14,17 +14,17 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
       - name: Build docker image
-        run: docker build -t sangeetadammu0912/user-frontend .
+        run: docker build -t sangeetadammu0912/user-fe .
       - name: Publish image to docker hub
-        run: docker push sangeetadammu0912/user-frontend:latest
+        run: docker push sangeetadammu0912/user-fe:latest
         
   deploy:
     needs: build
     runs-on: self-hosted
     steps:
       - name: Pull image from docker hub
-        run: docker pull sangeetadammu0912/user-frontend:latest
+        run: docker pull sangeetadammu0912/user-fe:latest
       - name: Delete old container
-        run: docker rm -f user-frontend-container  
+        run: docker rm -f user-fe-container  
       - name: Run docker container
-        run: docker run -d -p 4200:80 --name user-frontend-container sangeetadammu0912/user-frontend
+        run: docker run -d -p 4200:80 --name user-fe-container sangeetadammu0912/user-fe
